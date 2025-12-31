@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>반편성 조정 프로그램</title>
+
+  <!-- 스타일 -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- SheetJS: 브라우저에서 엑셀 읽기용 -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
+
+    // ⚠️ Firebase 설정 - 본인의 Firebase 프로젝트 정보로 교체하세요!
+    // Firebase Console (https://console.firebase.google.com)에서 확인 가능
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    window.firebaseDB = database;
+    window.firebaseRef = ref;
+    window.firebaseSet = set;
+    window.firebaseOnValue = onValue;
+    window.firebaseRemove = remove;
+  </script>
+
+  <!-- 우리 스크립트 -->
+  <script defer src="grade.js"></script>
+</head>
+<body>
+  <header>
+    <h1>반편성 조정 프로그램</h1>
+    <div class="header-right">
+      <div id="prev-class-filter">
+        <!-- 이전 반 체크박스가 여기 생성됩니다 -->
+      </div>
+      <div class="header-buttons">
+        <label class="file-input-label">
+          <span class="file-input-button">찾아보기</span>
+          <input type="file" id="file-input" accept=".xlsx,.xls" />
+        </label>
+        <button id="reset-data" class="reset-btn" title="모든 데이터 초기화">초기화</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="class-container">
+      <!-- 반별 칼럼이 여기 생성됩니다 -->
+    </div>
+    <div id="history-container">
+      <div class="history-header">
+        <span>변경 히스토리</span>
+        <button id="download-history" class="download-btn" title="히스토리 다운로드">
+          <span>⬇</span>
+        </button>
+      </div>
+      <ul id="history-list">
+        <!-- 변경 내역이 여기 표시됩니다 -->
+      </ul>
+    </div>
+  </main>
+
+  <!-- 확인 모달 -->
+  <div id="confirm-modal" class="modal">
+    <div class="modal-content">
+      <h3>학생 교환 확인</h3>
+      <p id="modal-message"></p>
+      <div class="modal-buttons">
+        <button id="modal-confirm" class="btn-confirm">확인</button>
+        <button id="modal-cancel" class="btn-cancel">취소</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

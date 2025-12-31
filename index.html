@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반편성 조정 프로그램</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: white;
+      font-size: 48px;
+      margin-bottom: 60px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .grade-buttons {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .grade-button {
+      width: 200px;
+      height: 200px;
+      background: white;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .grade-button:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .grade-button:active {
+      transform: translateY(-5px);
+    }
+
+    .grade-icon {
+      font-size: 60px;
+    }
+
+    .grade-text {
+      font-size: 32px;
+      font-weight: 600;
+      color: #2d3e50;
+    }
+
+    /* 모달 스타일 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      min-width: 400px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 30px;
+      color: #2d3e50;
+      font-size: 24px;
+    }
+
+    .password-input {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
+      letter-spacing: 4px;
+    }
+
+    .password-input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .modal-buttons button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-weight: 500;
+    }
+
+    .btn-confirm {
+      background: #4CAF50;
+      color: white;
+    }
+
+    .btn-confirm:hover {
+      background: #45a049;
+    }
+
+    .btn-cancel {
+      background: #f44336;
+      color: white;
+    }
+
+    .btn-cancel:hover {
+      background: #da190b;
+    }
+
+    .error-message {
+      color: #f44336;
+      margin-top: 10px;
+      font-size: 14px;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>반편성 조정 프로그램</h1>
+    <div class="grade-buttons">
+      <button class="grade-button" onclick="showPasswordModal(1)">
+        <div class="grade-icon">📘</div>
+        <div class="grade-text">1학년</div>
+      </button>
+      <button class="grade-button" onclick="showPasswordModal(2)">
+        <div class="grade-icon">📗</div>
+        <div class="grade-text">2학년</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- 비밀번호 모달 -->
+  <div id="password-modal" class="modal">
+    <div class="modal-content">
+      <h2 id="modal-title">1학년 접근</h2>
+      <input
+        type="password"
+        id="password-input"
+        class="password-input"
+        placeholder="비밀번호 입력"
+        maxlength="10"
+      />
+      <div class="error-message" id="error-message"></div>
+      <div class="modal-buttons">
+        <button class="btn-confirm" onclick="checkPassword()">확인</button>
+        <button class="btn-cancel" onclick="closeModal()">취소</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>
