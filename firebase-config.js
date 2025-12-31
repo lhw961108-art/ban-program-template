@@ -2,16 +2,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
 import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-database.js";
 
-// ⚠️ Firebase 설정 - 본인의 Firebase 프로젝트 정보로 교체하세요!
-// Firebase Console (https://console.firebase.google.com)에서 확인 가능
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBiTeEbdhUbnOn75x9dBNIwV3Nv04tnheg",
+  authDomain: "sapa-2nd-classmaker.firebaseapp.com",
+  databaseURL: "https://sapa-2nd-classmaker-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "sapa-2nd-classmaker",
+  storageBucket: "sapa-2nd-classmaker.firebasestorage.app",
+  messagingSenderId: "71190830822",
+  appId: "1:71190830822:web:27092bf3762d61c1e9e527",
+  measurementId: "G-EED22SG0P3"
 };
 
 // Firebase 초기화
